@@ -40,7 +40,6 @@ export const AuthProvider = ({ children }) => {
   const login = async (state, credentials) => {
     try {
       const { data } = await axios.post(`/api/auth/${state}`, credentials);
-
       if (data.success) {
         setAuthUser(data.userData);
         connectSocket(data.userData);
@@ -95,6 +94,21 @@ export const AuthProvider = ({ children }) => {
     });
   };
 
+
+  const resetEmail = async (email) => {
+    try {
+      const { data } = await axios.post('/api/auth/verify-email', { email})
+      if(data.success){
+        toast.success("Email sent successfully!!")
+      }
+      else{
+        toast.error("Enter correct Email")
+      }
+    } catch (error) {
+      toast.error(error.message)
+    }
+  }
+
   const value = {
     axios,
     authUser,
@@ -103,6 +117,7 @@ export const AuthProvider = ({ children }) => {
     login,
     logout,
     updateProfile,
+    resetEmail,
   };
 
   return (
