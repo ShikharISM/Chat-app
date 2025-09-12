@@ -5,6 +5,7 @@ import Login from './pages/Login.jsx'
 import Profile from './pages/Profile.jsx'
 import { Toaster } from 'react-hot-toast'
 import { AuthContext } from '../context/AuthContext.jsx'
+import Callback from './pages/Callback.jsx'
 
 const App = () => {
   const { authUser } = useContext(AuthContext)
@@ -16,6 +17,7 @@ const App = () => {
         <Route path='/' element={authUser ? <Home /> : <Navigate to='/login' />} />
         <Route path='/login' element={!authUser ? <Login /> : <Navigate to='/' />} />
         <Route path='/profile' element={authUser ? <Profile /> : <Navigate to='/login' />} />
+        <Route path="/auth/callback/*" element={<Callback />} />
       </Routes>
 
     </div>

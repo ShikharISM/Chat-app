@@ -3,6 +3,7 @@ import axios from 'axios'
 import toast from "react-hot-toast";
 import { io } from 'socket.io-client';
 import React from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const backendUrl = import.meta.env.VITE_BACKEND_URL;
 axios.defaults.baseURL = backendUrl;
@@ -93,29 +94,9 @@ export const AuthProvider = ({ children }) => {
       setOnlineUsers(userIds);
     });
   };
-  
-  // useEffect(() => {
-  //   const initAuth = async () => {
-  //     const storedToken = localStorage.getItem("token");
-  //     if (storedToken) {
-  //       axios.defaults.headers.common["token"] = storedToken;
-  //       try {
-  //         const { data } = await axios.get("/api/auth/check");
-  //         if (data.success) {
-  //           setAuthUser(data.user);
-  //           connectSocket(data.user);
-  //         } else {
-  //           logout();
-  //         }
-  //       } catch (err) {
-  //         logout();
-  //       }
-  //     }
-  //   };
-  //   initAuth();
-  // }, []);
+
   const value = {
-    axios,         
+    axios,
     authUser,
     onlineUsers,
     socket,

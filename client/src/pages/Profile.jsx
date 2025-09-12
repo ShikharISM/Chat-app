@@ -4,7 +4,7 @@ import assets from '../assets/assets.js'
 import { AuthContext } from '../../context/AuthContext'
 
 const Profile = () => {
-  const { authUser, updateProfile } = useContext(AuthContext)
+  const { authUser, updateProfile, setAuthUser } = useContext(AuthContext)
   const [selectedimage, setselectedimage] = useState(null)
   const [isCameraOpen, setIsCameraOpen] = useState(false)
   const videoRef = useRef(null)
@@ -107,7 +107,7 @@ const Profile = () => {
             Take Photo
           </button>
 
-          {/* Camera Preview */}
+          {/* Camera Preview */}  
           {isCameraOpen && (
             <div className="flex flex-col items-center gap-2">
               <video ref={videoRef} autoPlay playsInline className="w-40 h-40 border rounded" />
